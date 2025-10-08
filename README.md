@@ -68,3 +68,48 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+---
+
+## Project Specific Setup
+
+This repo contains a responsive Doctor Portfolio site scaffold using React and Firebase (Firestore).
+
+1. Install dependencies
+
+```
+npm install
+```
+
+2. Firebase configuration
+
+Create a `.env` at the project root with these variables (replace values):
+
+```
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
+REACT_APP_FIREBASE_APP_ID=...
+```
+
+3. Run development server
+
+```
+npm start
+```
+
+Notes
+- Firestore collections used: `services`, `testimonials`, `caseStudies`, `faqs`, `blogs`, `contacts`, and document `site/about` for about section content.
+- Replace `src/assets/hero.jpg` with your preferred hero image.
+- Styling is in `src/components/styles/sections.css` and implements the glass effect and green gradients.
+
+Admin & Security
+- Admin panel is available via the "Admin" button in the navbar. It uses Firebase Email/Password auth.
+- To grant admin access, create a document at `site/admins` with shape: `{ emails: ['admin@example.com'] }` (use the Firestore console).
+- Example Firestore security rules are included in `firestore.rules`. They demonstrate restricting writes to admin users (via a `site/admins` document or custom claims).
+
+Seeding example data
+- Sign in with an admin account, open Admin panel and use the "Seed" button to populate example services and about content.
+
