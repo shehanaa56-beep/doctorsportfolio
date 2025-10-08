@@ -9,6 +9,8 @@
 /* set a dark background (navy/teal) so the light glass text is readable */
 body{font-family: Inter, system-ui, Arial; color: #eafaf1; background: linear-gradient(180deg,#022233, #021825);}
 
+img{max-width:100%; height:auto;}
+
 .glass-card{backdrop-filter: blur(10px); background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); border-radius:12px; padding:20px;}
 .glass-nav{backdrop-filter: blur(8px); background: linear-gradient(90deg, rgba(6,102,179,0.6), rgba(2,70,138,0.4)); border-bottom:1px solid rgba(255,255,255,0.06);}
 
@@ -21,7 +23,7 @@ body{font-family: Inter, system-ui, Arial; color: #eafaf1; background: linear-gr
 .hero-inner{display:flex; gap:30px; align-items:center; max-width:1100px; width:100%;}
 .hero-card{flex:1}
 .hero-card h1{font-size:34px; margin-bottom:8px; color:#e7fff3}
-.hero-image img{width:420px; border-radius:14px; filter: drop-shadow(0 8px 30px rgba(3,86,143,0.35));}
+.hero-image img{max-width:420px; width:100%; border-radius:14px; filter: drop-shadow(0 8px 30px rgba(3,86,143,0.35));}
 .hero-actions button{margin-right:8px; padding:10px 14px; border-radius:10px; border:none; background:var(--accent); color:#022233; font-weight:700}
 
 /* Admin panel specific overrides for better contrast on light glass */
@@ -96,9 +98,52 @@ body{font-family: Inter, system-ui, Arial; color: #eafaf1; background: linear-gr
 .newsletter-form button.small{padding:8px 10px; border-radius:8px}
 .copyright{margin-top:8px; text-align:center; opacity:0.9; font-size:13px}
 
+@media (max-width: 1024px) {
+  .hero-section { padding: 60px 20px; }
+  .hero-card h1 { font-size: 30px; }
+  .about-section, .services-section, .testimonials-section, .casestudies-section, .process-section, .faq-section, .blog-section, .contact-section { padding: 40px 20px; }
+  .footer-inner { gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .hero-section { padding: 40px 16px; }
+  .hero-card h1 { font-size: 26px; }
+  .hero-image img { max-width: 300px; }
+  .hero-actions button { padding: 8px 12px; font-size: 14px; }
+  .nav-inner { padding: 10px 16px; }
+  .nav-links button { margin: 0 4px; font-size: 14px; }
+  .glass-card { padding: 16px; }
+  .about-section, .services-section, .testimonials-section, .casestudies-section, .process-section, .faq-section, .blog-section, .contact-section { padding: 30px 16px; }
+  .services-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .case-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .blog-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .process-card { width: 200px; }
+  .footer-inner { flex-wrap: wrap; gap: 12px; }
+  .newsletter-form { flex-direction: column; gap: 6px; }
+}
+
+@media (max-width: 480px) {
+  .hero-section { padding: 20px 12px; }
+  .hero-card h1 { font-size: 22px; }
+  .hero-image img { max-width: 250px; }
+  .hero-actions { display: flex; flex-wrap: wrap; }
+  .hero-actions button { margin-right: 4px; margin-bottom: 4px; padding: 6px 10px; font-size: 12px; }
+  .nav-inner { padding: 8px 12px; flex-wrap: wrap; }
+  .glass-card { padding: 12px; }
+  .about-section, .services-section, .testimonials-section, .casestudies-section, .process-section, .faq-section, .blog-section, .contact-section { padding: 20px 12px; }
+  .services-grid { grid-template-columns: 1fr; gap: 8px; }
+  .case-grid { grid-template-columns: 1fr; gap: 8px; }
+  .blog-grid { grid-template-columns: 1fr; gap: 8px; }
+  .process-steps { flex-direction: column; align-items: center; }
+  .process-card { width: 100%; max-width: 300px; }
+  .footer-inner { flex-direction: column; align-items: center; gap: 8px; }
+  .newsletter-form { width: 100%; }
+}
+
 @media(max-width:800px){
   .hero-inner{flex-direction:column}
   .two-col{grid-template-columns:1fr}
   .contact-inner{grid-template-columns:1fr}
   .nav-links{display:none}
+  .blog-card img{height:220px}
 }
