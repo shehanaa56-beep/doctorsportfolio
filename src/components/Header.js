@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/sections.css';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false); // Close menu after clicking
   };
   const navigate = useNavigate();
+
+  const handleAppointmentClick = () => {
+    navigate('/appointment');
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="nav glass-nav">
@@ -16,19 +23,21 @@ export default function Header() {
         <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <h3>Dr. Alex Morgan</h3>
         </div>
-        <nav className="nav-links">
+        <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
           <button onClick={() => scrollTo('home')}>Home</button>
           <button onClick={() => scrollTo('about')}>About</button>
           <button onClick={() => scrollTo('services')}>Services</button>
           <button onClick={() => scrollTo('caseStudies')}>Case Studies</button>
           <button onClick={() => scrollTo('blog')}>Blog</button>
           <button onClick={() => scrollTo('contact')}>Contact</button>
-          <Link to="/admin-dashboard"><button>Login</button></Link>
+          <Link to="/admin-dashboard"><button onClick={() => setIsMenuOpen(false)}>Login</button></Link>
         </nav>
         <div className="nav-cta">
-          <button className="glow" onClick={() => navigate('/appointment')}>Request Appointment</button>
+          <button className="glow" onClick={handleAppointmentClick}>Request Appointment</button>
         </div>
-        <div className="mobile-menu"><FaBars /></div>
+        <div className="mobile-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
+        </div>
       </div>
     </header>
   );
