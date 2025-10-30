@@ -62,6 +62,15 @@ service cloud.firestore {
                 && get(/databases/$(database)/documents/site/admins).data.emails.hasAny([request.auth.token.email])));
     }
 
+    // features: public read, admin-only write
+    match /features/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && (request.auth.token.admin == true
+            || (exists(/databases/$(database)/documents/site/admins)
+                && get(/databases/$(database)/documents/site/admins).data.emails.hasAny([request.auth.token.email])));
+    }
+
     // contacts: allow public creates (forms), admin reads/updates/deletes
     match /contacts/{docId} {
       allow create: if true;
